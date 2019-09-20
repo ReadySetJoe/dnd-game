@@ -8,25 +8,65 @@
     <title>Welcome to my uD&D!</title>
   </head>
   <body>
-    <header class="d-flex justify-content-center align-content-center">
+    <header class="d-flex justify-content-center align-content-center py-4">
       <div class="">
         Welcome to the world of Dungeons and Dragons!
       </div>
-      <div class="">
-
-      </div>
 
       <div class="">
-        Let's make your character!
+        Hit the start button below to begin having fun!
       </div>
 
     </header>
 
     <main class="container d-flex justify-content-center">
       <div class="game-screen m-5">
+        <div class="game-content" id="start">
+          <h3 class="py-3">Welcome to the game! Here are an overview of the things you can do!</h3>
+          <ul>
+            <li><h5>Start: This is where you are. Good job!</h5></li>
+            <li><h5>Characters: On this tab, you can make new characters, and view the characters you've already made. Right now I think it's just a random villager hanging out.</h5></li>
+            <li><h5>Battle: Here, you'll battle your character against monsters, and gain XP</h5></li>
+            <li><h5>Credits: A quick about the author, and links to some of my other work</h5></li>
+          </ul>
+        </div>
+        <div class="game-content" id="character">
+          <h3 class="py-3">Character List:</h3>
+          <ul class="char-list">
+            <li class="character"><h5></h5></li>
 
-      </div>
+          </ul>
+          <button id="char-button" onclick="addCharacter()" type="button" name="button">Add New Character</button>
+
+        </div>
+        <div class="game-content" id="battle">This is the battle screen
+        </div>
+        <div class="game-content" id="credits">
+          <h3 class="py-3">Credits:</h3>
+          <ul>
+            <li><h5>Lead Product Designer: Me</h5></li>
+            <li><h5>Lead Developer: Me</h5></li>
+            <li><h5>Head Writer: Me</h5></li>
+            <li><h5>The Rest: Me, it was all me. Please hire me.</h5></li>
+            <ul>
+              <li><h5>On Github: <a class="text-success" href="https://github.com/ReadySetJoe">@ReadySetJoe</a></h5></li>
+              <li><h5>On LinkedIn: <a class="text-success" href="https://www.linkedin.com/in/joe-powers-57494764/">@JoePowers</a></h5></li>
+            </ul>
+          </ul>
+        </div>
+
     </main>
+
+    <nav class="d-flex">
+      <div class="logo align-self-center">
+        ~*~ uD&D ~*~
+      </div>
+      <button onclick="tabNav(event,'start')" class="nav-link">Start</button>
+      <button onclick="tabNav(event,'character')" class="nav-link">Characters</button>
+      <button onclick="tabNav(event,'battle')" class="nav-link">Battle</button>
+      <button onclick="tabNav(event,'credits')" class="nav-link">Credits</button>
+
+    </nav>
 
     <script src="./main.js" type="text/javascript"></script>
   </body>

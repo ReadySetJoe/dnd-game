@@ -1,4 +1,23 @@
 
+tabNav(evt,"Home")
+
+function tabNav(evt, tabName) {
+  console.log("I'm in the tabNav function");
+  console.log(evt);
+  console.log(tabName);
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("game-content");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("nav-link");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" selected", "");
+  }
+  document.getElementById(tabName).style.display = "inherit";
+  evt.currentTarget.className += " selected";
+}
+
 class Character {
   constructor(args) {
     this.stats = {
@@ -49,9 +68,7 @@ function rollStats() {
   for (let i=0;i<6;i++) {
     let stat = [];
     // Roll a 6 sided die, 4 times
-    for (let j=0;j<4;j++) {
-      stat.push(roll(1,6));
-    }
+    for (let j=0;j<4;j++) {stat.push(roll(1,6));}
     // Drop the lowest (sort and shift) and sum, before adding to list of stats
     stat = stat.sort();
     stat.shift();
