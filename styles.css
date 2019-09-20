@@ -2,7 +2,7 @@
 /* ***********GLOBAL*********** */
 * {box-sizing: border-box; transition: 0.5s}
 img {width: 100%;}
-/* ul {list-style: none; padding-left: unset;} */
+.char-list {list-style: none; padding-left: unset;}
 a {text-decoration: none; color: #fff;}
 a:hover {text-decoration: none; color: #fff;}
 
@@ -24,6 +24,7 @@ header {
   background: #D4FDFF;
   border: 3px grey double;
   border-radius: 10px;
+  overflow: scroll;
 }
 
 .game-content {
@@ -35,6 +36,65 @@ header {
   display: inherit!important;
 
 }
+
+/* **********CHARACTER LIST********** */
+
+.char-list, .class-list, .stat-list {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.char-add li {
+  display: inline-block;
+}
+
+.char-add {
+  flex-direction: column;
+  /* display: none; */
+
+}
+
+.show-stat {
+  /* display: none; */
+}
+
+.stat-list {
+  justify-content: space-between;
+}
+.stat-list li {
+  position: relative;
+}
+
+.stat-list li div {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.stat-list-nums > li::before {
+  content: ' < ';
+  border: 1px solid gray;
+  padding: 2px;
+  margin: 5px;
+  background: #fff;
+}
+
+.stat-list-nums > li::after {
+  content: ' > ';
+  border: 1px solid gray;
+  padding: 2px;
+  margin: 5px;
+  background: #fff;
+}
+.stat-list-nums > li:hover::before {cursor: w-resize;;}
+.stat-list-nums > li:hover::after {cursor: e-resize;}
+
+.stat-list-nums > li:first-child::before {background: darkgrey;}
+.stat-list-nums > li:last-child::after {background: darkgrey;}
+
+.stat-list-nums > li:first-child:hover::before {cursor: default;}
+.stat-list-nums > li:last-child:hover::after {cursor: default;}
 
 /* ************NAV BAR*********** */
 

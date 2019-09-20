@@ -9,14 +9,8 @@
   </head>
   <body>
     <header class="d-flex justify-content-center align-content-center py-4">
-      <div class="">
-        Welcome to the world of Dungeons and Dragons!
-      </div>
-
-      <div class="">
-        Hit the start button below to begin having fun!
-      </div>
-
+      <h4>Welcome to the world of Dungeons and Dragons!</h4>
+      <h4>Hit the start button below to begin having fun!</h4>
     </header>
 
     <main class="container d-flex justify-content-center">
@@ -31,12 +25,44 @@
           </ul>
         </div>
         <div class="game-content" id="character">
-          <h3 class="py-3">Character List:</h3>
+          <h3 class="py-3 border-bottom">Character List:</h3>
           <ul class="char-list">
-            <li class="character"><h5></h5></li>
+            <li class="character py-4 border-bottom"><h5>Ole No Name</h5></li>
 
           </ul>
-          <button id="char-button" onclick="addCharacter()" type="button" name="button">Add New Character</button>
+          <button id="char-button" onclick="addCharacter()" type="button" name="button">Add New Character:</button>
+          <div class="char-add d-flex p-3">
+            <div class="row py-1">
+
+              Name: <input type="type name here..." name="" value="">
+            </div>
+            <div class="row py-1">
+
+              Select Class: <ul class="class-list">
+                <li><button onclick="showRollStats()" type="button" name="button">Fighter</button></li>
+                <li><button onclick="showRollStats()"type="button" name="button">Rogue</button></li>
+                <li><button onclick="showRollStats()"type="button" name="button">Wizard</button></li>
+                <li><button onclick="showRollStats()"type="button" name="button">Bard</button></li>
+              </ul>
+            </div>
+            <div class="row py-2">
+              <button class="roll-stats" onclick="rollStats()" type="button" name="button">Roll Stats!</button>
+            </div>
+            <div class="row mx-auto">
+              <ul class="stat-list stat-list-nums show-stat">
+                <li>0<div>STR</div></li>
+                <li>0<div>DEX</div></li>
+                <li>0<div>CON</div></li>
+                <li>0<div>INT</div></li>
+                <li>0<div>WIS</div></li>
+                <li>0<div>CHA</div></li>
+              </ul>
+            </div>
+            <div class="row">
+              <button type="button" name="button">Make your Hero!</button>
+            </div>
+
+          </div>
 
         </div>
         <div class="game-content" id="battle">This is the battle screen

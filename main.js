@@ -1,5 +1,5 @@
 
-tabNav(evt,"Home")
+// tabNav(evt,"Home")
 
 function tabNav(evt, tabName) {
   console.log("I'm in the tabNav function");
@@ -43,6 +43,39 @@ class Fighter extends Character {
     this.dumpStat = "INT";
     this.hitDie = 10;
     this.attacks = ["Shortsword","Longsword","Greatsword","Defend"];
+  }
+}
+
+class Rogue extends Character {
+  constructor(args) {
+    super(args);
+    this.statPrimary = "DEX";
+    this.statSecondary = "WIS";
+    this.dumpStat = "CON";
+    this.hitDie = 8;
+    this.attacks = ['Sneaky Dagger','Also Sneaky Arrow','Distract','Hide'];
+  }
+}
+
+class Wizard extends Character {
+  constructor(args) {
+    super(args);
+    this.statPrimary = "INT";
+    this.statSecondary = "CON";
+    this.dumpStat = "STR";
+    this.hitDie = 6;
+    this.attacks = [];
+  }
+}
+
+class Bard extends Character {
+  constructor(args) {
+    super(args);
+    this.statPrimary = "CHA";
+    this.statSecondary = "DEX";
+    this.dumpStat = "WIS";
+    this.hitDie = 8;
+    this.attacks = ['Rapier','Lil Crossbow','Sing-a-song!','Mock Relentlessly'];
   }
 }
 
