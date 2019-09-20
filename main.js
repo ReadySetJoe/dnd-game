@@ -1,6 +1,5 @@
 
-// tabNav(evt,"Home")
-
+// TAB NAVIGATION
 function tabNav(evt, tabName) {
   console.log("I'm in the tabNav function");
   console.log(evt);
@@ -18,8 +17,15 @@ function tabNav(evt, tabName) {
   evt.currentTarget.className += " selected";
 }
 
+let charList = [];
+
+function addCharacter(character) {
+  new Character(character);
+}
+
 class Character {
   constructor(args) {
+    console.log('make a new character');
     this.stats = {
       STR: 10,
       DEX: 10,
@@ -30,8 +36,11 @@ class Character {
     };
     this.name = "Ole' No Name";
     this.class = "Commoner";
-    Object.assign(this, args);
+    this.hitDie = 6;
     this.mods = stats2mods(this.stats);
+    this.health = this.hitDie + this.mods.CON;
+    Object.assign(this, args);
+    charlist.push(this);
   }
 }
 
@@ -108,10 +117,25 @@ function rollStats() {
     stat = stat.reduce((a, b) => a + b, 0);
     out.push(stat);
   }
+  // Update the stat objects on the html page
+  let statlist = document.getElementsByClassName("stat-num");
+  for (let i=0;i<statlist.length;i++) {
+    statlist[i].innerHTML = out[i].toString().concat(statlist[i].innerHTML.slice(-14));
+  }
   return out;
 }
 
-console.log(rollStats());
+
+
+// $('stat-num').before.click(function(){
+//     $(this).attr('data-content','bar');
+// });
+//
+// function swapStatLeft() {
+//
+// }
+
+
 
 //          __  _ ___ __  _
 //   __  __/ /_(_) (_) /_(_)__  _____
@@ -121,10 +145,4 @@ console.log(rollStats());
 
 function statLongName(statKey) {
   return {STR:"Strength",DEX:"Dexterity",CON:"Constitution",INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"}[statKey];
-}
-
-function removeSmallest(numbers) {
-    var min = Math.min.apply(null, numbers);
-    numbers.forEach((v, k, arr) => v !== min || arr.splice(k,1));
-    return numbers;
 }
