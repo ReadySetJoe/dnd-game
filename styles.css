@@ -1,0 +1,19 @@
+
+/* ***********GLOBAL*********** */
+* {box-sizing: border-box;}
+img {width: 100%;}
+ul {list-style: none; padding-left: unset;}
+a {text-decoration: none;}
+
+
+/* ***********HEADER*********** */
+
+header {
+  height: 100px;
+  background: #FFB7A4;
+}
+.game-screen {
+  width: 600px;
+  height: 400px;
+  background: #D4FDFF;
+}
