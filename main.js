@@ -1,25 +1,15 @@
 
 $( document ).ready(function() {
-  console.log( "ready!" );
   $('.char-add').hide();
   $('.roll-stats').hide();
   $('.stat-list').hide();
-  $('.make-hero').hide();
-
 });
 
-function showCharAdd() {
-  $('.char-add').show();
-}
-function showRollStats() {
-  $('.roll-stats').show();
-}
-function showStatList() {
-  $('.stat-list').show();
-}
+function showCharAdd() {$('.char-add').show();}
+function showRollStats() {$('.roll-stats').show();}
+function showStatList() {$('.stat-list').show();}
 
-
-
+let charList = [];
 
 // TAB NAVIGATION - Ripped from StackOverflow *thumbs-up*
 function tabNav(evt, tabName) {
@@ -37,52 +27,51 @@ function tabNav(evt, tabName) {
 }
 
 function classNav(evt, className) {
+  // For notes
+  document.getElementById("classSelected").innerHTML = className;
+  document.getElementById("statPrimary").innerHTML = statLongName(sp[className]);
+  document.getElementById("statSecondary").innerHTML = statLongName(ss[className]);
+  document.getElementById("dumpStat").innerHTML = statLongName(ds[className]);
+
   var i, classcontent, classlinks;
-  // tabcontent = document.getElementsByClassName("game-content");
-  // for (i = 0; i < tabcontent.length; i++) {
-  //   tabcontent[i].style.display = "none";
-  // }
   classlinks = document.getElementsByClassName("classlinks");
   for (i = 0; i < classlinks.length; i++) {
     classlinks[i].className = classlinks[i].className.replace(" class-selected", "");
   }
-  // document.getElementById(className).style.display = "inherit";
   evt.currentTarget.className += " class-selected";
-}
-
-let charList = [];
-
-function addCharacter(character) {
-  new Character(character);
 }
 
 class Character {
   constructor(args) {
-    this.stats = {
-      STR: 10,
-      DEX: 10,
-      CON: 10,
-      INT: 10,
-      WIS: 10,
-      CHA: 10
-    };
+    this.stats = {STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10};
     this.name = "Ole' No Name";
     this.class = "Commoner";
     this.hitDie = 6;
-    this.mods = stats2mods(this.stats);
-    this.health = this.hitDie + this.mods.CON;
     Object.assign(this, args);
-    charList.push(this);
+    this.statsStr = "";
+    for (const [key, value] of Object.entries(this.stats)) {
+      this.statsStr += (`  ${key} : ${value},  `);
+    }
+    this.statsStr = this.statsStr.slice(0, -3);
+    this.mods = stats2mods(this.stats);
+    this.maxhp = this.hitDie + this.mods.CON;
+    this.hp = this.maxhp;
+    this.level = 1;
+    this.xp = 0;
   }
+
+  updateMaxHP() {this.maxhp = this.hitDie + this.mods.CON + (this.level-1) * Math.ceil(this.hitDie/2);}
+
+  refillHP() {this.hp = this.maxhp;}
 }
 
 class Fighter extends Character {
   constructor(args) {
     super(args);
-    this.statPrimary = "STR";
-    this.statSecondary = "DEX";
-    this.dumpStat = "INT";
+    this.class = "Fighter";
     this.hitDie = 10;
+    this.updateMaxHP();
+    this.refillHP();
     this.attacks = ["Shortsword","Longsword","Greatsword","Defend"];
   }
 }
@@ -90,10 +79,10 @@ class Fighter extends Character {
 class Rogue extends Character {
   constructor(args) {
     super(args);
-    this.statPrimary = "DEX";
-    this.statSecondary = "WIS";
-    this.dumpStat = "CON";
+    this.class = "Rogue";
     this.hitDie = 8;
+    this.updateMaxHP();
+    this.refillHP();
     this.attacks = ['Sneaky Dagger','Also Sneaky Arrow','Distract','Hide'];
   }
 }
@@ -101,10 +90,10 @@ class Rogue extends Character {
 class Wizard extends Character {
   constructor(args) {
     super(args);
-    this.statPrimary = "INT";
-    this.statSecondary = "CON";
-    this.dumpStat = "STR";
+    this.class = "Wizard";
     this.hitDie = 6;
+    this.updateMaxHP();
+    this.refillHP();
     this.attacks = [];
   }
 }
@@ -112,13 +101,37 @@ class Wizard extends Character {
 class Bard extends Character {
   constructor(args) {
     super(args);
-    this.statPrimary = "CHA";
-    this.statSecondary = "DEX";
-    this.dumpStat = "WIS";
+    this.class = "Bard";
     this.hitDie = 8;
+    this.updateMaxHP();
+    this.refillHP();
     this.attacks = ['Rapier','Lil Crossbow','Sing-a-song!','Mock Relentlessly'];
   }
 }
+
+let sp = {Fighter:"STR",Rogue:"DEX",Wizard:"INT",Bard:"CHA"};
+let ss = {Fighter:"DEX",Rogue:"WIS",Wizard:"CON",Bard:"DEX"};
+let ds = {Fighter:"INT",Rogue:"CON",Wizard:"STR",Bard:"WIS"};
+
+function addCharacter(character) {
+  charList.push(character);
+  let context = {chars: charList};
+  let source = $('#char-template').html();
+  let template = Handlebars.compile(source);
+  let charListHtml = template(context);
+  console.log(charListHtml);
+  $('.char-list').html(charListHtml);
+}
+
+addCharacter(new Fighter({name:"Terry", stats:{STR:20,DEX:20,CON:15,INT:3,WIS:4,CHA:5}}))
+addCharacter(new Bard({name: "Wolfgang Wallace"}))
+
+
+//          __  _ ___ __  _
+//   __  __/ /_(_) (_) /_(_)__  _____
+//  / / / / __/ / / / __/ / _ \/ ___/
+// / /_/ / /_/ / / / /_/ /  __(__  )
+// \__,_/\__/_/_/_/\__/_/\___/____/
 
 function stats2mods(stats) {
   let mods = {};
@@ -156,24 +169,6 @@ function rollStats() {
   }
   return out;
 }
-
-
-
-// $('stat-num').before.click(function(){
-//     $(this).attr('data-content','bar');
-// });
-//
-// function swapStatLeft() {
-//
-// }
-
-
-
-//          __  _ ___ __  _
-//   __  __/ /_(_) (_) /_(_)__  _____
-//  / / / / __/ / / / __/ / _ \/ ___/
-// / /_/ / /_/ / / / /_/ /  __(__  )
-// \__,_/\__/_/_/_/\__/_/\___/____/
 
 function statLongName(statKey) {
   return {STR:"Strength",DEX:"Dexterity",CON:"Constitution",INT:"Intelligence",WIS:"Wisdom",CHA:"Charisma"}[statKey];

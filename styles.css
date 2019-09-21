@@ -43,9 +43,19 @@ header {
 
 /* **********CHARACTER LIST********** */
 
+.character {
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row;
+}
+
 .char-list, .class-list, .stat-list {
   list-style: none;
   padding-left: 20px;
+}
+
+.char-list {
+  flex-flow: column;
 }
 
 .char-add li {
@@ -116,7 +126,8 @@ header {
 
 .notes {
   position: absolute;
-  width: 305px;
+  top: 110%;
+  width: 435px;
   background: #FFB7A4;
   border: 3px grey double;
   border-radius: 5px;

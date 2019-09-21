@@ -26,7 +26,20 @@
       </div>
       <div class="game-content" id="character">
         <h3 class="py-3 border-bottom">Character List:</h3>
-        <div class="character py-4 border-bottom"><h5>Ole No Name</h5></div>
+        <script id="char-template" type="text/x-handlebars-template">
+          {{#each chars}}
+          <div class="character py-2 d-flex">
+            <h3>{{name}}</h3><h5>{{class}}</h5> <h5>HP : {{hp}}/{{maxhp}}</h5> <h5>XP : {{xp}}</h5>
+          </div>
+          <div class="char-stat-list border-bottom">
+             and the following stats:  {{statsStr}}
+          </div>
+          {{/each}}
+        </script>
+        <div class="char-list py-4 d-flex">
+
+        </div>
+
         <button class="my-3" id="char-button" onclick="showCharAdd()" type="button" name="button">Add New Character +</button>
         <div class="char-add m-3 row">
           <div class="row py-2 align-content-center">
@@ -56,7 +69,8 @@
           </ul>
         </div>
         <div class="row">
-          <div class="p-1 m-3 stat-list notes">Note: you can re-arrange which of your stat values go to which hero attribute with the left and right arrow keys</div>
+          <div class="p-1 m-3 stat-list notes">Note: you can swap values for the attributes with the left and right arrow keys. As a <span id="classSelected"></span> your most important attribute is <span id="statPrimary"></span>, your second most important is probably <span id="statSecondary"></span>, and you shouldn't worry too much about <span id="dumpStat"></span>, but feel free to place them anywhere!
+          </div>
           <button class="stat-list mx-auto px-2" onclick="AddCharacter()" type="button" name="button">Make your Hero!</button>
         </div>
       </div>
@@ -78,18 +92,19 @@
     </div>
   </main>
 
-  <nav class="d-flex">
+  <nav class="d-flex md-d-none">
     <div class="logo d-flex">
       <span>~*~ uD&D ~*~</span>
     </div>
     <button onclick="tabNav(event,'start')" class="nav-link">Start</button>
-    <button onclick="tabNav(event,'character'); addCharacter();" class="nav-link">Characters</button>
+    <button onclick="tabNav(event,'character');" class="nav-link">Characters</button>
     <button onclick="tabNav(event,'battle')" class="nav-link">Battle</button>
     <button onclick="tabNav(event,'credits')" class="nav-link">Credits</button>
 
   </nav>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js" charset="utf-8"></script>
+  <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="./main.js" type="text/javascript"></script>
 
 </body>
