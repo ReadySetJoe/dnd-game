@@ -11,6 +11,7 @@ a:hover {text-decoration: none; color: #fff;}
 
 header {
   height: 10vh;
+  min-height: 60px;
   background: #FFB7A4;
   flex-direction: column;
   align-items: center;
@@ -49,19 +50,19 @@ header {
 }
 
 .char-add {
+  display: none;
   flex-direction: column;
-  /* display: none; */
-
 }
 
 .show-stat {
-  /* display: none; */
+  display: none;
 }
 
 .stat-list {
   justify-content: space-between;
 }
 .stat-list li {
+  display: inline-block;
   position: relative;
 }
 

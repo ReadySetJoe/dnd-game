@@ -1,101 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="./styles.css">
-    <title>Welcome to my uD&D!</title>
-  </head>
-  <body>
-    <header class="d-flex justify-content-center align-content-center py-4">
-      <h4>Welcome to the world of Dungeons and Dragons!</h4>
-      <h4>Hit the start button below to begin having fun!</h4>
-    </header>
+  <link rel="stylesheet" href="./styles.css">
+  <title>Welcome to my uD&D!</title>
+</head>
+<body>
+  <header class="d-flex justify-content-center align-content-center py-3">
+    <h4>Welcome to the world of Dungeons and Dragons!</h4>
+    <h4>Hit the start button below to begin having fun!</h4>
+  </header>
 
-    <main class="container d-flex justify-content-center">
-      <div class="game-screen m-5">
-        <div class="game-content" id="start">
-          <h3 class="py-3">Welcome to the game! Here are an overview of the things you can do!</h3>
-          <ul>
-            <li><h5>Start: This is where you are. Good job!</h5></li>
-            <li><h5>Characters: On this tab, you can make new characters, and view the characters you've already made. Right now I think it's just a random villager hanging out.</h5></li>
-            <li><h5>Battle: Here, you'll battle your character against monsters, and gain XP</h5></li>
-            <li><h5>Credits: A quick about the author, and links to some of my other work</h5></li>
-          </ul>
-        </div>
-        <div class="game-content" id="character">
-          <h3 class="py-3 border-bottom">Character List:</h3>
-          <ul class="char-list">
-            <li class="character py-4 border-bottom"><h5>Ole No Name</h5></li>
-
-          </ul>
-          <button id="char-button" onclick="addCharacter()" type="button" name="button">Add New Character:</button>
-          <div class="char-add d-flex p-3">
-            <div class="row py-2 align-content-center">
-
-              Name: <input type="text" name="" value="" class="mx-2">
-            </div>
-            <div class="row py-2">
-
-              Select Class: <ul class="class-list">
-                <li><button onclick="showRollStats()" type="button" name="button">Fighter</button></li>
-                <li><button onclick="showRollStats()"type="button" name="button">Rogue</button></li>
-                <li><button onclick="showRollStats()"type="button" name="button">Wizard</button></li>
-                <li><button onclick="showRollStats()"type="button" name="button">Bard</button></li>
-              </ul>
-            </div>
-            <div class="row py-2">
-              <button class="roll-stats border-top" onclick="rollStats()" type="button" name="button">Roll Stats!</button>
-            </div>
-            <div class="row mx-auto">
-              <ul class="stat-list stat-list-nums show-stat">
-                <li class="stat-num">0<div>STR</div></li>
-                <li class="stat-num">0<div>DEX</div></li>
-                <li class="stat-num">0<div>CON</div></li>
-                <li class="stat-num">0<div>INT</div></li>
-                <li class="stat-num">0<div>WIS</div></li>
-                <li class="stat-num">0<div>CHA</div></li>
-              </ul>
-            </div>
-            <div class="row">
-              <button type="button" name="button">Make your Hero!</button>
-            </div>
-
-          </div>
-
-        </div>
-        <div class="game-content" id="battle">This is the battle screen
-        </div>
-        <div class="game-content" id="credits">
-          <h3 class="py-3">Credits:</h3>
-          <ul>
-            <li><h5>Lead Product Designer: Me</h5></li>
-            <li><h5>Lead Developer: Me</h5></li>
-            <li><h5>Head Writer: Me</h5></li>
-            <li><h5>The Rest: Me, it was all me. Please hire me.</h5></li>
-            <ul>
-              <li><h5>On Github: <a class="text-success" href="https://github.com/ReadySetJoe">@ReadySetJoe</a></h5></li>
-              <li><h5>On LinkedIn: <a class="text-success" href="https://www.linkedin.com/in/joe-powers-57494764/">@JoePowers</a></h5></li>
-            </ul>
-          </ul>
-        </div>
-
-    </main>
-
-    <nav class="d-flex">
-      <div class="logo align-self-center">
-        ~*~ uD&D ~*~
+  <main class="container d-flex justify-content-center">
+    <div class="game-screen m-5">
+      <div class="game-content" id="start">
+        <h3 class="py-3">Welcome to the game! Here are an overview of the things you can do!</h3>
+        <ul>
+          <li><h5>Start: This is where you are. Good job!</h5></li>
+          <li><h5>Characters: On this tab, you can make new characters, and view the characters you've already made. Right now I think it's just a random villager hanging out.</h5></li>
+          <li><h5>Battle: Here, you'll battle your character against monsters, and gain XP</h5></li>
+          <li><h5>Credits: A quick about the author, and links to some of my other work</h5></li>
+        </ul>
       </div>
-      <button onclick="tabNav(event,'start')" class="nav-link">Start</button>
-      <button onclick="tabNav(event,'character'); addCharacter();" class="nav-link">Characters</button>
-      <button onclick="tabNav(event,'battle')" class="nav-link">Battle</button>
-      <button onclick="tabNav(event,'credits')" class="nav-link">Credits</button>
+      <div class="game-content" id="character">
+        <h3 class="py-3 border-bottom">Character List:</h3>
+        <div class="character py-4 border-bottom"><h5>Ole No Name</h5></div>
+        <button class="my-3" id="char-button" onclick="showCharAdd()" type="button" name="button">Add New Character +</button>
+        <div class="char-add m-3 row">
+          <div class="row py-2 align-content-center">
+            Name: <input type="text" name="" value="" class="mx-2">
+          </div>
+          <div class="row py-2">
 
-    </nav>
+            Select Class: <ul class="class-list">
+              <li><button onclick="showRollStats()" type="button" name="button">Fighter</button></li>
+              <li><button onclick="showRollStats()"type="button" name="button">Rogue</button></li>
+              <li><button onclick="showRollStats()"type="button" name="button">Wizard</button></li>
+              <li><button onclick="showRollStats()"type="button" name="button">Bard</button></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row m-2">
+          <button class="roll-stats border-top" onclick="rollStats(); showStatList();" type="button" name="button">Roll Stats!</button>
+        </div>
+        <div class="row">
+          <ul class="mx-auto stat-list stat-list-nums">
+            <li class="stat-num">0<div>STR</div></li>
+            <li class="stat-num">0<div>DEX</div></li>
+            <li class="stat-num">0<div>CON</div></li>
+            <li class="stat-num">0<div>INT</div></li>
+            <li class="stat-num">0<div>WIS</div></li>
+            <li class="stat-num">0<div>CHA</div></li>
+          </ul>
+        </div>
+        <div class="row">
+          <button class="stat-list mx-auto px-2" onclick="AddCharacter()" type="button" name="button">Make your Hero!</button>
+        </div>
+      </div>
+      <div class="game-content" id="battle">This is the battle screen
+      </div>
+      <div class="game-content" id="credits">
+        <h3 class="py-3">Credits:</h3>
+        <ul>
+          <li><h5>Lead Product Designer: Me</h5></li>
+          <li><h5>Lead Developer: Me</h5></li>
+          <li><h5>Head Writer: Me</h5></li>
+          <li><h5>The Rest: Me, it was all me. Please hire me.</h5></li>
+          <ul>
+            <li><h5>On Github: <a class="text-success" target="_blank" href="https://github.com/ReadySetJoe">@ReadySetJoe</a></h5></li>
+            <li><h5>On LinkedIn: <a class="text-success" target="_blank" href="https://www.linkedin.com/in/joe-powers-57494764/">@JoePowers</a></h5></li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+  </main>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="./main.js" type="text/javascript"></script>
+  <nav class="d-flex">
+    <div class="logo align-self-center">
+      ~*~ uD&D ~*~
+    </div>
+    <button onclick="tabNav(event,'start')" class="nav-link">Start</button>
+    <button onclick="tabNav(event,'character'); addCharacter();" class="nav-link">Characters</button>
+    <button onclick="tabNav(event,'battle')" class="nav-link">Battle</button>
+    <button onclick="tabNav(event,'credits')" class="nav-link">Credits</button>
 
-  </body>
+  </nav>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="./main.js" type="text/javascript"></script>
+
+</body>
 </html>

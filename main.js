@@ -1,9 +1,27 @@
 
+$( document ).ready(function() {
+  console.log( "ready!" );
+  $('.char-add').hide();
+  $('.roll-stats').hide();
+  $('.stat-list').hide();
+  $('.make-hero').hide();
+
+});
+
+function showCharAdd() {
+  $('.char-add').show();
+}
+function showRollStats() {
+  $('.roll-stats').show();
+}
+function showStatList() {
+  $('.stat-list').show();
+}
+
+
+
 // TAB NAVIGATION
 function tabNav(evt, tabName) {
-  console.log("I'm in the tabNav function");
-  console.log(evt);
-  console.log(tabName);
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("game-content");
   for (i = 0; i < tabcontent.length; i++) {
@@ -25,7 +43,6 @@ function addCharacter(character) {
 
 class Character {
   constructor(args) {
-    console.log('make a new character');
     this.stats = {
       STR: 10,
       DEX: 10,
@@ -40,7 +57,7 @@ class Character {
     this.mods = stats2mods(this.stats);
     this.health = this.hitDie + this.mods.CON;
     Object.assign(this, args);
-    charlist.push(this);
+    charList.push(this);
   }
 }
 
