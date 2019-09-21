@@ -20,7 +20,8 @@ function showStatList() {
 
 
 
-// TAB NAVIGATION
+
+// TAB NAVIGATION - Ripped from StackOverflow *thumbs-up*
 function tabNav(evt, tabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("game-content");
@@ -33,6 +34,20 @@ function tabNav(evt, tabName) {
   }
   document.getElementById(tabName).style.display = "inherit";
   evt.currentTarget.className += " selected";
+}
+
+function classNav(evt, className) {
+  var i, classcontent, classlinks;
+  // tabcontent = document.getElementsByClassName("game-content");
+  // for (i = 0; i < tabcontent.length; i++) {
+  //   tabcontent[i].style.display = "none";
+  // }
+  classlinks = document.getElementsByClassName("classlinks");
+  for (i = 0; i < classlinks.length; i++) {
+    classlinks[i].className = classlinks[i].className.replace(" class-selected", "");
+  }
+  // document.getElementById(className).style.display = "inherit";
+  evt.currentTarget.className += " class-selected";
 }
 
 let charList = [];

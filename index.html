@@ -35,14 +35,14 @@
           <div class="row py-2">
 
             Select Class: <ul class="class-list">
-              <li><button onclick="showRollStats()" type="button" name="button">Fighter</button></li>
-              <li><button onclick="showRollStats()"type="button" name="button">Rogue</button></li>
-              <li><button onclick="showRollStats()"type="button" name="button">Wizard</button></li>
-              <li><button onclick="showRollStats()"type="button" name="button">Bard</button></li>
+              <li><button class="classlinks" onclick="showRollStats(); classNav(event,'Fighter');" type="button" name="button">Fighter</button></li>
+              <li><button class="classlinks" onclick="showRollStats(); classNav(event,'Rogue');" type="button" name="button">Rogue</button></li>
+              <li><button class="classlinks" onclick="showRollStats(); classNav(event,'Wizard');" type="button" name="button">Wizard</button></li>
+              <li><button class="classlinks" onclick="showRollStats(); classNav(event,'Bard');" type="button" name="button">Bard</button></li>
             </ul>
           </div>
         </div>
-        <div class="row m-2">
+        <div class="row mx-2">
           <button class="roll-stats border-top" onclick="rollStats(); showStatList();" type="button" name="button">Roll Stats!</button>
         </div>
         <div class="row">
@@ -56,6 +56,7 @@
           </ul>
         </div>
         <div class="row">
+          <div class="p-1 m-3 stat-list notes">Note: you can re-arrange which of your stat values go to which hero attribute with the left and right arrow keys</div>
           <button class="stat-list mx-auto px-2" onclick="AddCharacter()" type="button" name="button">Make your Hero!</button>
         </div>
       </div>
@@ -78,8 +79,8 @@
   </main>
 
   <nav class="d-flex">
-    <div class="logo align-self-center">
-      ~*~ uD&D ~*~
+    <div class="logo d-flex">
+      <span>~*~ uD&D ~*~</span>
     </div>
     <button onclick="tabNav(event,'start')" class="nav-link">Start</button>
     <button onclick="tabNav(event,'character'); addCharacter();" class="nav-link">Characters</button>

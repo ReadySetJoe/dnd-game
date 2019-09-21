@@ -5,6 +5,7 @@ img {width: 100%;}
 .char-list {list-style: none; padding-left: unset;}
 a {text-decoration: none; color: #fff;}
 a:hover {text-decoration: none; color: #fff;}
+body {background: #008212;}
 
 
 /* ***********HEADER*********** */
@@ -22,10 +23,12 @@ header {
 .game-screen {
   width: 80%;
   height: 80vh;
+  min-height: 500px;
   background: #D4FDFF;
   border: 3px grey double;
   border-radius: 10px;
   overflow: scroll;
+  position: relative;
 }
 
 .game-content {
@@ -52,6 +55,16 @@ header {
 .char-add {
   display: none;
   flex-direction: column;
+}
+
+.roll-stats {
+  position: relative;
+}
+
+.roll-stats div {
+  position: absolute;
+  top: 50px;
+  left: 50px;
 }
 
 .show-stat {
@@ -97,13 +110,40 @@ header {
 .stat-list-nums > li:first-child:hover::before {cursor: default;}
 .stat-list-nums > li:last-child:hover::after {cursor: default;}
 
+.class-selected {
+  background: #598BFF;
+}
+
+.notes {
+  position: absolute;
+  width: 305px;
+  background: #FFB7A4;
+  border: 3px grey double;
+  border-radius: 5px;
+}
+
 /* ************NAV BAR*********** */
 
 nav {
   flex-direction: column;
   position: absolute;
   left: 100px;
-  top: 220px;
+  top: 120px;
+}
+
+.logo {
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  border: 5px outset #fff;
+  text-align: center;
+  background: #598BFF;
+}
+
+.logo > span {
+  align-self: center;
+  margin: auto;
+  color: white;
 }
 
 .nav-link {
@@ -125,7 +165,7 @@ nav {
 }
 
 .nav-link:hover {
-  background-color: #559fcc;
+  background: #598BFF;
   color: #fff;
   text-decoration: none;
 }
