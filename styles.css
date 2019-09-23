@@ -125,8 +125,6 @@ header {
 }
 
 .notes {
-  position: absolute;
-  top: 110%;
   width: 435px;
   background: #FFB7A4;
   border: 3px grey double;

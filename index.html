@@ -43,7 +43,7 @@
         <button class="my-3" id="char-button" onclick="showCharAdd()" type="button" name="button">Add New Character +</button>
         <div class="char-add m-3 row">
           <div class="row py-2 align-content-center">
-            Name: <input type="text" name="" value="" class="mx-2">
+            Name: <input type="text" name="" value="" class="char-name mx-2">
           </div>
           <div class="row py-2">
 
@@ -69,10 +69,12 @@
           </ul>
         </div>
         <div class="row">
-          <div class="p-1 m-3 stat-list notes">Note: you can swap values for the attributes with the left and right arrow keys. As a <span id="classSelected"></span> your most important attribute is <span id="statPrimary"></span>, your second most important is probably <span id="statSecondary"></span>, and you shouldn't worry too much about <span id="dumpStat"></span>, but feel free to place them anywhere!
-          </div>
-          <button class="stat-list mx-auto px-2" onclick="AddCharacter()" type="button" name="button">Make your Hero!</button>
+          <button class="stat-list mx-auto px-2" onclick="AddCharacterFromPage()" type="button" name="button">Make your Hero!</button>
         </div>
+        <div class="p-1 m-3 stat-list notes">Note: you can swap values for the attributes with the left and right arrow keys. As a <span id="classSelected"></span> your most important attribute is <span id="statPrimary"></span>, your second most important is probably <span id="statSecondary"></span>, and you shouldn't worry too much about <span id="dumpStat"></span>, but feel free to place them anywhere!
+        </div>
+
+
       </div>
       <div class="game-content" id="battle">This is the battle screen
       </div>

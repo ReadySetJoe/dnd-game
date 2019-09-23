@@ -10,7 +10,6 @@ function showRollStats() {$('.roll-stats').show();}
 function showStatList() {$('.stat-list').show();}
 
 let charList = [];
-
 // TAB NAVIGATION - Ripped from StackOverflow *thumbs-up*
 function tabNav(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -39,6 +38,14 @@ function classNav(evt, className) {
     classlinks[i].className = classlinks[i].className.replace(" class-selected", "");
   }
   evt.currentTarget.className += " class-selected";
+}
+
+function swapStatLeft() {
+
+}
+
+function swapStatRight() {
+
 }
 
 class Character {
@@ -109,9 +116,10 @@ class Bard extends Character {
   }
 }
 
-let sp = {Fighter:"STR",Rogue:"DEX",Wizard:"INT",Bard:"CHA"};
-let ss = {Fighter:"DEX",Rogue:"WIS",Wizard:"CON",Bard:"DEX"};
-let ds = {Fighter:"INT",Rogue:"CON",Wizard:"STR",Bard:"WIS"};
+let statHeaders = ["STR","DEX","CON","INT","WIS","CHA"];
+let sp = {Fighter:"STR", Rogue:"DEX", Wizard:"INT", Bard:"CHA"};
+let ss = {Fighter:"DEX", Rogue:"WIS", Wizard:"CON", Bard:"DEX"};
+let ds = {Fighter:"INT", Rogue:"CON", Wizard:"STR", Bard:"WIS"};
 
 function addCharacter(character) {
   charList.push(character);
@@ -119,13 +127,33 @@ function addCharacter(character) {
   let source = $('#char-template').html();
   let template = Handlebars.compile(source);
   let charListHtml = template(context);
-  console.log(charListHtml);
   $('.char-list').html(charListHtml);
 }
 
-addCharacter(new Fighter({name:"Terry", stats:{STR:20,DEX:20,CON:15,INT:3,WIS:4,CHA:5}}))
-addCharacter(new Bard({name: "Wolfgang Wallace"}))
+addCharacter(new Fighter({name:"Terry", stats:{STR:20,DEX:20,CON:15,INT:3,WIS:4,CHA:5}}));
+addCharacter(new Bard({name: "Wolfgang Wallace"}));
+// AddCharacterFromPage();
 
+function AddCharacterFromPage() {
+  let statArray = $('.stat-num');
+  console.log("this shouuld be the stat arrary" + Object.entries(statArray));
+  let out = {name: $('.char-name')[0].value, stats:{}};
+  console.log("This should be the name and empty stat array: " + Object.entries(out));
+
+  for (i=0;i<statArray.length;i++) {
+    out.stats[statHeaders[i]] = Number(statArray[i].innerHTML.split("<")[0]);
+  }
+  let classNameSelected = document.getElementById("classSelected").innerHTML;
+  console.log(classNameSelected);
+  console.log("This is the object going into addCharacter(): " + Object.entries(out.stats));
+
+  if (classNameSelected == 'Fighter') {addCharacter(new Fighter(out));
+  } else if (classNameSelected == 'Rogue') {addCharacter(new Rogue(out));
+  } else if (classNameSelected == 'Wizard') {addCharacter(new Wizard(out));
+  } else if (classNameSelected == 'Bard') {addCharacter(new Bard(out));
+  } else {addCharacter(new Character(out));}
+
+}
 
 //          __  _ ___ __  _
 //   __  __/ /_(_) (_) /_(_)__  _____
