@@ -131,6 +131,16 @@ header {
   border-radius: 5px;
 }
 
+/* ***********BATTLE********** */
+.char-selected {
+  background: #598BFF;
+}
+
+.diff-selected {
+  background: #598BFF;  
+}
+
+
 /* ************NAV BAR*********** */
 
 nav {

@@ -76,7 +76,32 @@
 
 
       </div>
-      <div class="game-content" id="battle">This is the battle screen
+      <div class="game-content" id="battle">
+        <div class="char-selection-screen">
+          Select your character!
+          <script id="char-selection-template" type="text/x-handlebars-template">
+            {{#each chars}}
+              <button class="char-selection-btn" onclick="characterSelectionNav(event); showEnemySelection()">{{name}}</button>
+            {{/each}}
+
+          </script>
+          <div class="py-3 char-selection">
+
+          </div>
+          <div class="enemy-selection-screen">
+            Pick your level of encounter:
+            <button class="encounter-diff-btn" id="easy-btn">Easy</button>
+            <button class="encounter-diff-btn" id="medium-btn">Medium</button>
+            <button class="encounter-diff-btn" id="hard-btn">Hard</button>
+            <button class="encounter-diff-btn" id="deadly-btn">Deadly</button>
+
+          </div>
+        </div>
+        <div class="battle-screen">
+
+        </div>
+
+
       </div>
       <div class="game-content" id="credits">
         <h3 class="py-3">Credits:</h3>

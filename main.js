@@ -1,15 +1,24 @@
 
+//         __                          __
+//   _____/ /_  ____ __________ ______/ /____  __________
+//  / ___/ __ \/ __ `/ ___/ __ `/ ___/ __/ _ \/ ___/ ___/
+// / /__/ / / / /_/ / /  / /_/ / /__/ /_/  __/ /  (__  )
+// \___/_/ /_/\__,_/_/   \__,_/\___/\__/\___/_/  /____/
+//
+
+// Hides the character creation fields
 $( document ).ready(function() {
   $('.char-add').hide();
   $('.roll-stats').hide();
   $('.stat-list').hide();
 });
-
+// Shows the sections of character creation as the user advances
 function showCharAdd() {$('.char-add').show();}
 function showRollStats() {$('.roll-stats').show();}
 function showStatList() {$('.stat-list').show();}
 
 let charList = [];
+
 // TAB NAVIGATION - Ripped from StackOverflow *thumbs-up*
 function tabNav(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -40,6 +49,7 @@ function classNav(evt, className) {
   evt.currentTarget.className += " class-selected";
 }
 
+// Still need to develop the stat swapping feature
 function swapStatLeft() {
 
 }
@@ -116,10 +126,11 @@ class Bard extends Character {
   }
 }
 
+// Hard coded character features
 let statHeaders = ["STR","DEX","CON","INT","WIS","CHA"];
-let sp = {Fighter:"STR", Rogue:"DEX", Wizard:"INT", Bard:"CHA"};
-let ss = {Fighter:"DEX", Rogue:"WIS", Wizard:"CON", Bard:"DEX"};
-let ds = {Fighter:"INT", Rogue:"CON", Wizard:"STR", Bard:"WIS"};
+let sp = {Fighter:"STR", Rogue:"DEX", Wizard:"INT", Bard:"CHA"}; // Primary Stat for a given character class
+let ss = {Fighter:"DEX", Rogue:"WIS", Wizard:"CON", Bard:"DEX"}; // Secondary Stat for a given character class
+let ds = {Fighter:"INT", Rogue:"CON", Wizard:"STR", Bard:"WIS"}; // Dump Stat for a given character class
 
 function addCharacter(character) {
   charList.push(character);
@@ -130,23 +141,24 @@ function addCharacter(character) {
   $('.char-list').html(charListHtml);
 }
 
-addCharacter(new Fighter({name:"Terry", stats:{STR:20,DEX:20,CON:15,INT:3,WIS:4,CHA:5}}));
-addCharacter(new Bard({name: "Wolfgang Wallace"}));
-// AddCharacterFromPage();
+// Starting characters
+addCharacter(new Fighter({name:"Terry T Fighter", stats:{STR:18,DEX:16,CON:15,INT:5,WIS:8,CHA:6}}));
+addCharacter(new Bard({name: "Wolfgang Wallace", stats:{STR:8,DEX:14,CON:10,INT:12,WIS:9,CHA:18}}));
+addCharacter(new Wizard({name: "Merlin Jr.", stats:{STR:5,DEX:8,CON:14,INT:20,WIS:8,CHA:6}}));
+addCharacter(new Rogue({name:"Sneaky Pete", stats:{STR:10,DEX:20,CON:8,INT:8,WIS:16,CHA:12}}));
 
+// Add a character that the user has generated
 function AddCharacterFromPage() {
-  let statArray = $('.stat-num');
-  console.log("this shouuld be the stat arrary" + Object.entries(statArray));
-  let out = {name: $('.char-name')[0].value, stats:{}};
-  console.log("This should be the name and empty stat array: " + Object.entries(out));
+  let statArray = $('.stat-num'); // Pull the rolled stat array from the page
+  let out = {name: $('.char-name')[0].value, stats:{}}; // Get the character name and initialize stats object
 
+  // Place of the stats from the page in a new character creation input object
   for (i=0;i<statArray.length;i++) {
     out.stats[statHeaders[i]] = Number(statArray[i].innerHTML.split("<")[0]);
   }
-  let classNameSelected = document.getElementById("classSelected").innerHTML;
-  console.log(classNameSelected);
-  console.log("This is the object going into addCharacter(): " + Object.entries(out.stats));
 
+  // Use the corresponding constructor to create their character
+  let classNameSelected = document.getElementById("classSelected").innerHTML;
   if (classNameSelected == 'Fighter') {addCharacter(new Fighter(out));
   } else if (classNameSelected == 'Rogue') {addCharacter(new Rogue(out));
   } else if (classNameSelected == 'Wizard') {addCharacter(new Wizard(out));
@@ -154,6 +166,51 @@ function AddCharacterFromPage() {
   } else {addCharacter(new Character(out));}
 
 }
+
+//     __          __  __  __
+//    / /_  ____ _/ /_/ /_/ /__
+//   / __ \/ __ `/ __/ __/ / _ \
+//  / /_/ / /_/ / /_/ /_/ /  __/
+// /_.___/\__,_/\__/\__/_/\___/
+//
+
+// Hides the character creation fields
+$( document ).ready(function() {
+  $('.enemy-selection-screen').hide();
+});
+// Shows the sections of character creation as the user advances
+function showEnemySelection() {$('.enemy-selection-screen').show();}
+
+
+// function charSelectionList(charList) {
+let context1 = {chars: charList};
+let source1 = $('#char-selection-template').html();
+let template1 = Handlebars.compile(source1);
+let charSelectionListHtml = template1(context1);
+$('.char-selection').html(charSelectionListHtml);
+// }
+
+function characterSelectionNav(evt) {
+  var i, charBtns;
+  charBtns = document.getElementsByClassName("char-selection-btn");
+  for (i = 0; i < charBtns.length; i++) {
+    charBtns[i].className = charBtns[i].className.replace(" char-selected", "");
+  }
+  evt.currentTarget.className += " char-selected";
+}
+
+function difficultySelectionNav(evt) {
+  var i, diffBtns;
+  diffBtns = document.getElementsByClassName("encounter-difficulty-btn");
+  for (i = 0; i < diffBtns.length; i++) {
+    diffBtns[i].className = diffBtns[i].className.replace(" diff-selected", "");
+  }
+  evt.currentTarget.className += " diff-selected";
+}
+
+
+
+
 
 //          __  _ ___ __  _
 //   __  __/ /_(_) (_) /_(_)__  _____
